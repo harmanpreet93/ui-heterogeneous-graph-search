@@ -59,11 +59,11 @@ jQuery(document).ready(function() {
 		    type: "POST",
 		    url: "http://192.168.112.36:8000/web/results/",
 		    data: { label : label, k_value : k_value, query: query, meta_path: meta_path },
-		    // dataType: "json",
+		    dataType: "json",
 		    success: function(data) {
-				console.log(data);
-				alert(data['data']);
-		        // processData(data);
+				// console.log(data['data']);
+				// alert(data['data']);
+		        processData(data['data']);
 		    },
 		    error: function( jqxhr, textStatus, error ) {
 		        var err = textStatus + ", " + error;
@@ -82,14 +82,34 @@ jQuery(document).ready(function() {
 
     var obj;
     function processData(data) {
-    	// var obj = jQuery.parseJSON(data['data']);
-    	// obj = data;
-    	alert(data['data']);
 
-		// alert("data: " + data);
-		// console.log("data: " + data);
+    	if(data.length == 0) {
+    		var message = {
+    			message: 'No Results',
+    			timeout: 2500,
+    		};
+    		'use strict';
+    		 snackbarContainer.MaterialSnackbar.showSnackbar(message);
+    	}
+    	else {
+    	$('#results').html('<thead><tr>\
+	                <th class="mdl-data-table__cell--non-numeric">Label</th>\
+	                <th>Score</th>\
+	              </tr>\
+	            </thead><tbody>');
 
-    	// var d = data[0];
+    	for (var i = 0; i < data.length; i++) {
+    		name = data[i]['name'];
+    		score = data[i]['score'];
+    		$('#results').append('<tr>\
+                <td class="mdl-data-table__cell--non-numeric">'+name+'</td>\
+                <td>'+score+'</td>\
+              </tr>');
+    	}
+    	$('#results').append('</tbody>');
+		}
+
+
     }
 
 
