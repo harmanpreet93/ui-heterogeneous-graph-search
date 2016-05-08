@@ -59,9 +59,11 @@ jQuery(document).ready(function() {
 		    type: "POST",
 		    url: "http://192.168.112.36:8000/web/results/",
 		    data: { label : label, k_value : k_value, query: query, meta_path: meta_path },
-		    dataType: "json",
+		    // dataType: "json",
 		    success: function(data) {
-		        console.log("data: " + data);
+				console.log(data);
+				alert(data['data']);
+		        // processData(data);
 		    },
 		    error: function( jqxhr, textStatus, error ) {
 		        var err = textStatus + ", " + error;
@@ -76,6 +78,18 @@ jQuery(document).ready(function() {
         $('#metapaths').html('<li class="mdl-menu__item">AMA</li><li class="mdl-menu__item">AMAMA</li><li class="mdl-menu__item">AMAxMA</li> \
 	            	<li class="mdl-menu__item">AMDMA</li><li class="mdl-menu__item">AMGMA</li>');
         $('#select_metapath').text('Select Metapath');
+    }
+
+    var obj;
+    function processData(data) {
+    	// var obj = jQuery.parseJSON(data['data']);
+    	// obj = data;
+    	alert(data['data']);
+
+		// alert("data: " + data);
+		// console.log("data: " + data);
+
+    	// var d = data[0];
     }
 
 
