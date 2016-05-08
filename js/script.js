@@ -59,19 +59,14 @@ jQuery(document).ready(function() {
 		    type: "POST",
 		    url: "http://192.168.112.36:8000/web/results/",
 		    data: { label : label, k_value : k_value, query: query, meta_path: meta_path },
-		    // dataType: 'json',
-		    // crossDomain : true,
-		    // crossOrigin: true,
-		    // beforeSend: function() {
-		    //     $("#search-box").css("background", "#FFF url(LoaderIcon.gif) no-repeat 165px");
-		    // },
+		    dataType: "json",
 		    success: function(data) {
 		        console.log("data: " + data);
 		    },
 		    error: function( jqxhr, textStatus, error ) {
 		        var err = textStatus + ", " + error;
 		        console.log( "Request Failed: " + err );
-		        console.log(jqxhr);
+		        // console.log(jqxhr);
 		    }
 		});
         }
