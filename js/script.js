@@ -60,6 +60,12 @@ jQuery(document).ready(function() {
 		    url: "http://192.168.112.36:8000/web/results/",
 		    data: { label : label, k_value : k_value, query: query, meta_path: meta_path },
 		    dataType: "json",
+		    beforeSend: function() {
+		    	console.log("working");
+		    	 document.querySelector('#p1').addEventListener('mdl-componentupgraded', function() {
+              	this.MaterialProgress.setProgress(44);
+            });
+		    },
 		    success: function(data) {
 				// console.log(data['data']);
 				// alert(data['data']);
@@ -80,7 +86,6 @@ jQuery(document).ready(function() {
         $('#select_metapath').text('Select Metapath');
     }
 
-    var obj;
     function processData(data) {
 
     	if(data.length == 0) {
