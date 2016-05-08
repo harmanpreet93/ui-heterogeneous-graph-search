@@ -15,6 +15,11 @@
   <!-- Material Design icon font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
   <!--getmdl-select-->
 
   <!-- <script type="text/javascript" src="js/getmdl-select.min.js"></script> -->
@@ -71,10 +76,18 @@
               
               <!-- Textfield with Floating Label -->
               <!-- <form action="#"> -->
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label ui-widget">
                   <input class="mdl-textfield__input" type="text" id="search" value="">
                   <label class="mdl-textfield__label" for="search">Label name</label>
                 </div>
+                <!-- <div id="suggesstion-box"> -->
+                <!-- <ul class="demo-list-item mdl-list" style="width: 100%;" >
+                  <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                      Bryan Cranston
+                    </span>
+                  </li>
+                </ul> -->
               <!-- </form> -->
 
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="k_value_div">
@@ -125,9 +138,6 @@
             Mauris sagittis pellentesque lacus eleifend lacinia...
           </div> -->
           <table class="mdl-data-table mdl-js-data-table" id="results">
-
-          <!-- Simple MDL Progress Bar -->
-          <div id="p1" class="mdl-progress mdl-js-progress"></div>
           
           <!-- <p2 style="align-content: center;">No Results</p2 > -->
             <!-- <thead>

@@ -57,14 +57,14 @@ jQuery(document).ready(function() {
 		else {
 		$.ajax({
 		    type: "POST",
-		    url: "http://192.168.112.36:8000/web/results/",
+		    url: "http://192.168.112.36:8000/web/get-topk-results/",
 		    data: { label : label, k_value : k_value, query: query, meta_path: meta_path },
 		    dataType: "json",
 		    beforeSend: function() {
 		    	console.log("working");
-		    	 document.querySelector('#p1').addEventListener('mdl-componentupgraded', function() {
-              	this.MaterialProgress.setProgress(44);
-            });
+		    	 // document.querySelector('#p1').addEventListener('mdl-componentupgraded', function() {
+        //       	this.MaterialProgress.setProgress(44);
+            // });
 		    },
 		    success: function(data) {
 				// console.log(data['data']);
@@ -78,6 +78,31 @@ jQuery(document).ready(function() {
 		    }
 		});
         }
+    });
+
+    // AJAX call for autocomplete 
+    $("#search").keyup(function() {
+    	var search_query = $('#search').val();
+    	console.log("val: " + search_query); 
+        $.ajax({
+            type: "POST",
+            url: "http://192.168.112.36:8000/web/auto-complete/",
+		    dataType: "json",
+            data: {'query': search_query},
+            beforeSend: function() {
+                $("#search").css("background", "#FFF url(LoaderIcon.gif) no-repeat 165px");
+            },
+            success: function(data) {
+                console.log("data: " + data["suggestions"]);
+                var availableTags = data["suggestions"];
+                $( "#search" ).autocomplete({
+                  source: availableTags
+                });
+                // $("#suggesstion-box").show();
+                // $("#suggesstion-box").html(data);
+                // $("#search").css("background", "#FFF");
+            }
+        });
     });
 
     function processMetapath() {
