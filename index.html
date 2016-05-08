@@ -18,8 +18,6 @@
   <!--getmdl-select-->
 
   <!-- <script type="text/javascript" src="js/getmdl-select.min.js"></script> -->
-  <script type="text/javascript" src="js/dialog-polyfill.js"></script>
-  <link rel="stylesheet" href="css/dialog-polyfill.css">
   <!-- <link rel="stylesheet" href="css/getmdl-select.min.css"> -->
 
 </head>
@@ -56,16 +54,7 @@
 
           <!-- <form action="#"> -->
             <h5>Filters</h5>
-              <!-- <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
-                  <input class="mdl-textfield__input" type="text" id="label" value="" readonly tabIndex="-1">
-                  <label for="label" class="mdl-textfield__label">Node label</label>
-                  <ul for="label" id="label" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-                    <li class="mdl-menu__item">Actor</li>
-                    <li class="mdl-menu__item">Actress</li>
-                    <li class="mdl-menu__item">Director</li>
-                    <li class="mdl-menu__item">Movie</li>
-                  </ul>
-              </div> -->
+              
 
               <div id="radio_div">
                 <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="radio1">
@@ -125,19 +114,11 @@
             <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" id="clear">Clear</button>
 
             <br><br>
-           <!--  <button id="show-dialog" type="button" class="mdl-button" style="background-color: #e7e7e7; color: #1A237E; width: 100%">Show Dialog</button> -->
-              <dialog class="mdl-dialog">
-                <!-- <h5 class="mdl-dialog__title">Error</h5> -->
-                <div class="mdl-dialog__content">
-                  <p2>
-                    Please fill all the fields.
-                  </p2>
-                </div>
-                <div class="mdl-dialog__actions">
-                  <!-- <button type="button" class="mdl-button">Ok</button> -->
-                  <button type="button" class="mdl-button close" style="border-radius: 1px">Press Esc</button>
-                </div>
-              </dialog>
+
+            <div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
+              <div class="mdl-snackbar__text"></div>
+              <button class="mdl-snackbar__action" type="button"></button>
+            </div>
           <!-- </form> -->
 
       </div>

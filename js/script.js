@@ -38,42 +38,36 @@ jQuery(document).ready(function() {
         $("#k_value").val('');
     });
  
-	// var dialog = document.querySelector('dialog');
-	var dialog = $("dialog")[0];
-
-    if (! dialog.showModal) {
-      dialogPolyfill.registerDialog(dialog);
-    }
+    // var snackbarContainer = document.querySelector('#demo-toast-example');
+    var snackbarContainer = $('#demo-toast-example')[0];
+    var message = {message: 'Please fill out all the fields'};
 
     $("#display_results").on('click', function(e) {
         var k_value = $('#k_value').val();
         var search_item = $('#search').val();
         var metapath = $('#select_metapath').text();
         if (k_value.length <= 0 || search_item.length <= 0 || metapath == "Select Metapath") {
-            // alert("Please fill out the fields");
-            dialog.showModal();
-            dialog.querySelector('.close').addEventListener('click', function() {
-              dialog.close();
-            });
+        	  'use strict';
+        	   snackbarContainer.MaterialSnackbar.showSnackbar(message);
         }
-         else {
-            console.log("label:" + $('input[name=radio]:checked').val() + " k:" + k_value + " query:" + search_item + " metapath:" + metapath);
-            $.ajax({
-                type: "POST",
-                url: "test.php",
-                data: 'json',
-                // beforeSend: function() {
-                //     $("#search-box").css("background", "#FFF url(LoaderIcon.gif) no-repeat 165px");
-                // },
-                success: function(data) {
-                    console.log("data: " + data);
-                },
-                error: function( jqxhr, textStatus, error ) {
-                    var err = textStatus + ", " + error;
-                    console.log( "Request Failed: " + err );
-                    // console.log(jqxhr);
-                }
-            });
+		else {
+		console.log("label:" + $('input[name=radio]:checked').val() + " k:" + k_value + " query:" + search_item + " metapath:" + metapath);
+		$.ajax({
+		    type: "POST",
+		    url: "test.php",
+		    data: 'json',
+		    // beforeSend: function() {
+		    //     $("#search-box").css("background", "#FFF url(LoaderIcon.gif) no-repeat 165px");
+		    // },
+		    success: function(data) {
+		        console.log("data: " + data);
+		    },
+		    error: function( jqxhr, textStatus, error ) {
+		        var err = textStatus + ", " + error;
+		        console.log( "Request Failed: " + err );
+		        // console.log(jqxhr);
+		    }
+		});
         }
     });
 
