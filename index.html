@@ -15,10 +15,10 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" type="text/css" href="css/style.css" />
   <!--getmdl-select-->
-  <script type="text/javascript" src="js/script.js"></script>
 
   <!-- <script type="text/javascript" src="js/getmdl-select.min.js"></script> -->
-
+  <script type="text/javascript" src="js/dialog-polyfill.js"></script>
+  <link rel="stylesheet" href="css/dialog-polyfill.css">
   <!-- <link rel="stylesheet" href="css/getmdl-select.min.css"> -->
 
 </head>
@@ -55,14 +55,10 @@
 
           <!-- <form action="#"> -->
             <h5>Filters</h5>
-            <!-- <select id="single">
-              <option>Actor</option>
-              <option>Actress</option>
-            </select> -->
               <!-- <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
-                  <input class="mdl-textfield__input" type="text" id="node_label" value="" readonly tabIndex="-1">
-                  <label for="node_label" class="mdl-textfield__label">Node label</label>
-                  <ul for="node_label" id="label" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                  <input class="mdl-textfield__input" type="text" id="label" value="" readonly tabIndex="-1">
+                  <label for="label" class="mdl-textfield__label">Node label</label>
+                  <ul for="label" id="label" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
                     <li class="mdl-menu__item">Actor</li>
                     <li class="mdl-menu__item">Actress</li>
                     <li class="mdl-menu__item">Director</li>
@@ -94,13 +90,13 @@
               <!-- Textfield with Floating Label -->
               <!-- <form action="#"> -->
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <input class="mdl-textfield__input" type="text" id="search">
+                  <input class="mdl-textfield__input" type="text" id="search" value="">
                   <label class="mdl-textfield__label" for="search">Label name</label>
                 </div>
               <!-- </form> -->
 
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <input class="mdl-textfield__input" type="text" pattern="[0-9]*?" id="k_value">
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="k_value_div">
+                  <input class="mdl-textfield__input" type="text" pattern="[0-9]*?" id="k_value" value="">
                   <label class="mdl-textfield__label" for="k_value">Top-k</label>
                   <span class="mdl-textfield__error">Enter positive number</span>
               </div>
@@ -108,39 +104,40 @@
               <br>
               <!-- metapaths -->
               <!-- Left aligned menu below button -->
-          <button id="demo-menu-lower-left" class="mdl-button mdl-js-button" value="AMAMA" style="background-color: #e7e7e7; color: #1A237E; width: 100%">
+          <button id="select_metapath" class="mdl-button mdl-js-button" value="" style="background-color: #e7e7e7; color: #1A237E; width: 100%">
           Select Metapath
           <!-- <i class="material-icons">more_vert</i> -->
           </button>
-
-              <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-left" style="width: 100%;" >
+              <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="select_metapath" id="metapaths">
+                <!-- <li class="mdl-menu__item">AMA</li>
                 <li class="mdl-menu__item">AMAMA</li>
                 <li class="mdl-menu__item ">AMAxMA</li>
                 <li class="mdl-menu__item">AMDMA</li>
-                <li class="mdl-menu__item">AMGMA</li>
+                <li class="mdl-menu__item">AMGMA</li> -->
               </ul>
               <br>
 
-              <!-- <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
-                  <input class="mdl-textfield__input" type="text" id="metapath" value="" readonly tabIndex="-2">
-                  <label for="metapath" class="mdl-textfield__label">Metapaths</label>
-                  <ul for="metapath" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-                    <li class="mdl-menu__item">AMAMA</li>
-                    <li class="mdl-menu__item">AMAxMA</li>
-                    <li class="mdl-menu__item">AMDMA</li>
-                    <li class="mdl-menu__item">AMGMA</li>
-                  </ul>
-              </div> -->
             <br>
             <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" 
-                          id="filter">Show Results</button>
+                          id="display_results">Show Results</button>
             
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Clear</button>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" id="clear">Clear</button>
 
-
+            <br><br>
+           <!--  <button id="show-dialog" type="button" class="mdl-button" style="background-color: #e7e7e7; color: #1A237E; width: 100%">Show Dialog</button> -->
+              <dialog class="mdl-dialog">
+                <!-- <h5 class="mdl-dialog__title">Error</h5> -->
+                <div class="mdl-dialog__content">
+                  <p2>
+                    Please fill all the fields.
+                  </p2>
+                </div>
+                <div class="mdl-dialog__actions">
+                  <!-- <button type="button" class="mdl-button">Ok</button> -->
+                  <button type="button" class="mdl-button close">Press Esc</button>
+                </div>
+              </dialog>
           <!-- </form> -->
-
-
 
       </div>
       <div class="mdl-cell mdl-cell--9-col">
@@ -200,4 +197,6 @@
 </div>
 
 </body>
+  <script type="text/javascript" src="js/script.js"></script>
+
 </html>
