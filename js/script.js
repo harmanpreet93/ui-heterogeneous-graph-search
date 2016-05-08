@@ -40,22 +40,28 @@ jQuery(document).ready(function() {
  
     // var snackbarContainer = document.querySelector('#demo-toast-example');
     var snackbarContainer = $('#demo-toast-example')[0];
-    var message = {message: 'Please fill out all the fields'};
+    var message = {
+    	message: 'Please fill out all the fields',
+    	timeout: 1500,
+    };
 
     $("#display_results").on('click', function(e) {
+		var label = $('input[name=radio]:checked').val();
         var k_value = $('#k_value').val();
-        var search_item = $('#search').val();
-        var metapath = $('#select_metapath').text();
-        if (k_value.length <= 0 || search_item.length <= 0 || metapath == "Select Metapath") {
+        var query = $('#search').val();
+        var meta_path = $('#select_metapath').text();
+        if (k_value.length <= 0 || query.length <= 0 || meta_path == "Select Metapath") {
         	  'use strict';
         	   snackbarContainer.MaterialSnackbar.showSnackbar(message);
         }
 		else {
-		console.log("label:" + $('input[name=radio]:checked').val() + " k:" + k_value + " query:" + search_item + " metapath:" + metapath);
 		$.ajax({
 		    type: "POST",
-		    url: "test.php",
-		    data: 'json',
+		    url: "http://192.168.112.36:8000/web/results/",
+		    data: { label : label, k_value : k_value, query: query, meta_path: meta_path },
+		    // dataType: 'json',
+		    // crossDomain : true,
+		    // crossOrigin: true,
 		    // beforeSend: function() {
 		    //     $("#search-box").css("background", "#FFF url(LoaderIcon.gif) no-repeat 165px");
 		    // },
@@ -65,7 +71,7 @@ jQuery(document).ready(function() {
 		    error: function( jqxhr, textStatus, error ) {
 		        var err = textStatus + ", " + error;
 		        console.log( "Request Failed: " + err );
-		        // console.log(jqxhr);
+		        console.log(jqxhr);
 		    }
 		});
         }
@@ -76,4 +82,6 @@ jQuery(document).ready(function() {
 	            	<li class="mdl-menu__item">AMDMA</li><li class="mdl-menu__item">AMGMA</li>');
         $('#select_metapath').text('Select Metapath');
     }
+
+
 });

@@ -9,7 +9,7 @@
 .demo-card-wide > .mdl-card__title {
   color: #fff;
   height: 154px;
-  background: url('../img/test.png') center / cover;
+  background: url('../img/graph.png') center / cover;
 }
 /*.demo-card-wide > .mdl-card__menu {
   color: #3f51b5;
@@ -19,8 +19,4 @@
   width: 100%;
 }
 
-/*.ui-scroll {
-    height: 100px;
-    overflow-y: scroll;
-}*/
 
