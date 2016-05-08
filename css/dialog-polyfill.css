@@ -13,6 +13,7 @@ dialog {
   background: white;
   color: black;
   display: none;
+  border-radius: 4px;
 }
 
 dialog[open] {

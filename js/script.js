@@ -38,7 +38,9 @@ jQuery(document).ready(function() {
         $("#k_value").val('');
     });
  
-	var dialog = document.querySelector('dialog');
+	// var dialog = document.querySelector('dialog');
+	var dialog = $("dialog")[0];
+
     if (! dialog.showModal) {
       dialogPolyfill.registerDialog(dialog);
     }
@@ -56,10 +58,24 @@ jQuery(document).ready(function() {
         }
          else {
             console.log("label:" + $('input[name=radio]:checked').val() + " k:" + k_value + " query:" + search_item + " metapath:" + metapath);
+            $.ajax({
+                type: "POST",
+                url: "test.php",
+                data: 'json',
+                // beforeSend: function() {
+                //     $("#search-box").css("background", "#FFF url(LoaderIcon.gif) no-repeat 165px");
+                // },
+                success: function(data) {
+                    console.log("data: " + data);
+                },
+                error: function( jqxhr, textStatus, error ) {
+                    var err = textStatus + ", " + error;
+                    console.log( "Request Failed: " + err );
+                    // console.log(jqxhr);
+                }
+            });
         }
     });
-
-
 
     function processMetapath() {
         $('#metapaths').html('<li class="mdl-menu__item">AMA</li><li class="mdl-menu__item">AMAMA</li><li class="mdl-menu__item">AMAxMA</li> \
