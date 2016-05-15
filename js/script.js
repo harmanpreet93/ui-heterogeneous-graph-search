@@ -9,7 +9,7 @@ jQuery(document).ready(function() {
     
     $('input[type=radio][name=radio]').change(function() {
         if (this.value == 'Actor') {
-            $('#metapaths').html('<li class="mdl-menu__item">AMA</li><li class="mdl-menu__item">AMAMA</li> \
+            $('#metapaths').html('<li class="mdl-menu__item">AMA</li><li class="mdl-menu__item">AMA_Jaccard</li><li class="mdl-menu__item">AMAMA</li> \
 	            	<li class="mdl-menu__item">AMAxMA</li><li class="mdl-menu__item">AMDMA</li> \
 	            	<li class="mdl-menu__item">AMGMA</li>');
             $('#select_metapath').text('Select Metapath');
@@ -22,8 +22,7 @@ jQuery(document).ready(function() {
 	            	<li class="mdl-menu__item">DMDMD</li><li class="mdl-menu__item">DMGMD</li>');
             $('#select_metapath').text('Select Metapath');
         } else if (this.value == 'Movie') {
-            $('#metapaths').html('<li class="mdl-menu__item">MGM</li><li class="mdl-menu__item">MAM</li><li class="mdl-menu__item">AxMAxMAx</li> \
-	            	<li class="mdl-menu__item">AxMDMAx</li><li class="mdl-menu__item">AxMGMAx</li>');
+            $('#metapaths').html('<li class="mdl-menu__item">MGM</li><li class="mdl-menu__item">M-weighted</li>');
             $('#select_metapath').text('Select Metapath');
         }
     });
@@ -57,7 +56,7 @@ jQuery(document).ready(function() {
 		else {
 		$.ajax({
 		    type: "POST",
-		    url: "http://192.168.112.36:8000/web/get-topk-results/",
+		    url: "http://172.16.161.60:8000/web/get-topk-results/",
 		    data: { label : label, k_value : k_value, query: query, meta_path: meta_path },
 		    dataType: "json",
 		    beforeSend: function() {
@@ -86,7 +85,7 @@ jQuery(document).ready(function() {
     	console.log("val: " + search_query); 
         $.ajax({
             type: "POST",
-            url: "http://192.168.112.36:8000/web/auto-complete/",
+            url: "http://172.16.161.60:8000/web/auto-complete/",
 		    dataType: "json",
             data: {'query': search_query},
             beforeSend: function() {
@@ -96,8 +95,10 @@ jQuery(document).ready(function() {
                 console.log("data: " + data["suggestions"]);
                 var availableTags = data["suggestions"];
                 $( "#search" ).autocomplete({
-                  source: availableTags
+                  source: availableTags,
                 });
+                $("#search").css("background", "#FFF");
+
                 // $("#suggesstion-box").show();
                 // $("#suggesstion-box").html(data);
                 // $("#search").css("background", "#FFF");
@@ -106,7 +107,7 @@ jQuery(document).ready(function() {
     });
 
     function processMetapath() {
-        $('#metapaths').html('<li class="mdl-menu__item">AMA</li><li class="mdl-menu__item">AMAMA</li><li class="mdl-menu__item">AMAxMA</li> \
+        $('#metapaths').html('<li class="mdl-menu__item">AMA</li><li class="mdl-menu__item">AMA_Jaccard</li><li class="mdl-menu__item">AMAMA</li><li class="mdl-menu__item">AMAxMA</li> \
 	            	<li class="mdl-menu__item">AMDMA</li><li class="mdl-menu__item">AMGMA</li>');
         $('#select_metapath').text('Select Metapath');
     }
@@ -116,6 +117,14 @@ jQuery(document).ready(function() {
     	if(data.length == 0) {
     		var message = {
     			message: 'No Results',
+    			timeout: 2500,
+    		};
+    		'use strict';
+    		 snackbarContainer.MaterialSnackbar.showSnackbar(message);
+    	}
+    	else if(data == 'Error') {
+    		var message = {
+    			message: 'Server Error, Please try again later',
     			timeout: 2500,
     		};
     		'use strict';
